@@ -1,0 +1,81 @@
+name: Release / Pages
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  create-github-page:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install uv based on the config files in the working-directory
+        uses: astral-sh/setup-uv@v6
+        with:
+          working-directory: ./extractor
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Install `wasm-pack`
+        run: |
+          cargo install wasm-pack
+      - name: Build WASM
+        run: make website-src
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3 
+        with:
+          path: website/
+
+  upload-github-page:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
+
+  create-release-assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install uv based on the config files in the working-directory
+        uses: astral-sh/setup-uv@v6
+        with:
+          working-directory: ./extractor
+      - name: Build JSON
+        run: |
+          make build-json
+          # put all `*.json` files in the extractor directory
+          # inside an archive
+          tar -czf classifications-json.tar.gz -C extractor *.json
+      - name: Upload Release Assets
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "classifications-json.tar.gz"
+      - name: Upload Artifacts
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/upload-artifact@v4
+        with:
+          path: "classifications-json.tar.gz"
+
+

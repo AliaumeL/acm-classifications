@@ -1,0 +1,33 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install uv based on the config files in the working-directory
+        uses: astral-sh/setup-uv@v6
+        with:
+          working-directory: ./extractor
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Setup CUE
+        uses: cue-lang/setup-cue@v1.0.0
+      - name: Install `wasm-pack`
+        run: |
+          cargo install wasm-pack
+      - name: Validate JSON files
+        run: make validate-json
+      - name: Build WASM
+        run: make build-wasm
