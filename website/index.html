@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACM / MSC Code Finder</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>ACM / MSC Code Finder</h1>
+      <p>
+        The quick and dirty way to select 
+        classification codes for your paper. Now you can 
+        safely submit to ArXiv, DROPS Dagstuhl, or any other
+        publisher that requires such codes.
+      </p>
+      <p>
+        Use the search input to filter using fuzzy matching
+        the classification codes of your choice 
+        (ACM 1998, ACM 2012, or MSC 2010).
+        Click on the results to add them to your selection.
+        You can then export them in different formats,
+        by clicking the "Export Selection" button which
+        copies the relevant code to your clipboard.
+      </p>
+    </header>
+    <main>
+      <div id="search-box">
+        <label for="search">Search:</label>
+        <input type="text" id="search" />
+        <select id="classification-select">
+          <option value="acm_12">ACM 2012</option>
+          <option value="acm_98">ACM 1998</option>
+          <option value="msc_10">MSC 2010</option>
+        </select>
+      </div>
+      <div id="selection-box">
+        <label for="export">Export:</label>
+        <select id="export-mode" value="latex">
+          <option value="latex">LaTeX Code</option>
+          <option value="paper-meta">Paper Meta</option>
+          <option value="plain">Plain Text</option>
+        </select>
+        <button id="export-button">
+          Export Selection
+        </button>
+        <ul id="selection">
+        </ul>
+      </div>
+      <div id="result-box">
+        <label for="results">Results:</label>
+        <ul id="results">
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2025 Aliaume Lopez</p>
+    </footer>
+  </body>
+</html>

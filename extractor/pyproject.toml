@@ -1,0 +1,15 @@
+[project]
+name = "acm-classifications-extractor"
+version = "0.1.0"
+description = "Create a JSON file with ACM classifications from the ACM Digital Library."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.3",
+]
