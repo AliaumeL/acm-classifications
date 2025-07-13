@@ -7,41 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  create-github-page:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write   
-      id-token: write 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install uv based on the config files in the working-directory
-        uses: astral-sh/setup-uv@v6
-        with:
-          working-directory: ./extractor
-      - name: Setup Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-      - name: Install `wasm-pack`
-        run: |
-          cargo install wasm-pack
-      - name: Build WASM
-        run: make website-src
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static files as artifact
-        uses: actions/upload-pages-artifact@v3 
-        with:
-          path: website/
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4 
-
   create-release-assets:
     runs-on: ubuntu-latest
     permissions:

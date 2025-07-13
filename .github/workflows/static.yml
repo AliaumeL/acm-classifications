@@ -33,11 +33,25 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Install uv based on the config files in the working-directory
+        uses: astral-sh/setup-uv@v6
+        with:
+          working-directory: ./extractor
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Install `wasm-pack`
+        run: |
+          cargo install wasm-pack
+      - name: Build WASM
+        run: make website-src
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: '.'
+          path: './website'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
