@@ -58,7 +58,7 @@ jobs:
           make build-json
           # put all `*.json` files in the extractor directory
           # inside an archive
-          tar -czf classifications-json.tar.gz -C extractor *.json
+          tar -czf classifications-json.tar.gz extractor/*.json
       - name: Upload Release Assets
         if: ${{ github.event_name != 'workflow_dispatch' }}
         uses: softprops/action-gh-release@v2
