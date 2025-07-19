@@ -10,34 +10,24 @@
   <body>
     <header>
       <h1>ACM / MSC Code Finder</h1>
-      <p>
-        The quick and dirty way to select 
-        classification codes for your paper. Now you can 
-        safely submit to ArXiv, DROPS Dagstuhl, or any other
-        publisher that requires such codes.
-      </p>
-      <p>
-        Use the search input to filter using fuzzy matching
-        the classification codes of your choice 
-        (ACM 1998, ACM 2012, or MSC 2010).
-        Click on the results to add them to your selection.
-        You can then export them in different formats,
-        by clicking the "Export Selection" button which
-        copies the relevant code to your clipboard.
-      </p>
-    </header>
+          </header>
     <main>
-      <div id="search-box">
-        <label for="search">Search:</label>
+      <section id="search-box">
+        <h2 class="sec-title">Search</h2>
         <input type="text" id="search" />
         <select id="classification-select">
           <option value="acm_12">ACM 2012</option>
           <option value="acm_98">ACM 1998</option>
           <option value="msc_10">MSC 2010</option>
         </select>
-      </div>
-      <div id="selection-box">
-        <label for="export">Export:</label>
+      </section>
+      <section id="result-box">
+        <h2 class="sec-title">Results</h2>
+        <ul id="results">
+        </ul>
+      </section>
+      <section id="selection-box">
+        <h2 class="sec-title">Export</h2>
         <select id="export-mode" value="latex">
           <option value="latex">LaTeX Code</option>
           <option value="paper-meta">Paper Meta</option>
@@ -48,14 +38,35 @@
         </button>
         <ul id="selection">
         </ul>
-      </div>
-      <div id="result-box">
-        <label for="results">Results:</label>
-        <ul id="results">
-        </ul>
-      </div>
+      </section>
     </main>
     <footer>
+      <details>
+        <summary>About</summary>
+        <p>
+          The quick and dirty way to select 
+          classification codes for your paper. Now you can 
+          safely submit to ArXiv, DROPS Dagstuhl, or any other
+          publisher that requires such codes.
+        </p>
+        <p>
+          Use the search input to filter using fuzzy matching
+          the classification codes of your choice 
+          (ACM 1998, ACM 2012, or MSC 2010).
+          Click on the results to add them to your selection.
+          You can then export them in different formats,
+          by clicking the "Export Selection" button which
+          copies the relevant code to your clipboard.
+        </p>
+        <p>
+        Full source code is available on 
+        Github at 
+        <a href="https://github.com/AliaumeL/acm-classifications">
+          AliaumeL/acm-classifications
+        </a>.
+        </p>
+      </details>
+
       <p>&copy; 2025 Aliaume Lopez</p>
     </footer>
   </body>

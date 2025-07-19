@@ -118,17 +118,26 @@ init().then(() => {
   const addToSelection = (res) => {
     const selectedCode = res.code;
     if (!Array.from(selectionList.children).some(item => item.dataset.code === selectedCode)) {
+      // create the same structure as in the results
+
       const selectedLi = document.createElement("li");
-      const originSpan = document.createElement("span");
-      const codeSpan   = document.createElement("span");
-      codeSpan.className = "code";
-      originSpan.className = "origin";
-      codeSpan.textContent = res.desc;
-      originSpan.textContent = classificationSelect.value;
+      selectedLi.className = "selected-item";
       selectedLi.dataset.code = selectedCode;
-      selectedLi.dataset.from = classificationSelect.value;
-      selectedLi.appendChild(originSpan);
-      selectedLi.appendChild(codeSpan);
+      const descSpan = document.createElement("span");
+      descSpan.className = "desc";
+      descSpan.textContent = res.desc;
+      selectedLi.appendChild(descSpan);
+      const parentsOl = document.createElement("ol");
+      parentsOl.className = "parents";
+      res.ancestor_codes.toReversed().forEach((code, index) => {
+        const parentLi = document.createElement("li");
+        parentLi.dataset.code = code;
+        parentLi.textContent = res.ancestor_descs[index];
+        parentsOl.appendChild(parentLi);
+      }
+      );
+      selectedLi.appendChild(parentsOl);
+
       selectedLi.addEventListener("click", () => {
         selectedLi.remove();
         const index = currentSelection.findIndex(item => item.code === selectedCode);
@@ -187,7 +196,7 @@ init().then(() => {
     // put in the clipboard 
     navigator.clipboard.writeText(output).then(() => {
       console.log("Selection copied to clipboard.");
-      exportButton.textContent = "Export Selection (Copied to Clipboard)";
+      exportButton.textContent = "Selection Copied!";
       exportButton.classList.add("copied");
       setTimeout(() => {
         exportButton.textContent = "Export Selection";

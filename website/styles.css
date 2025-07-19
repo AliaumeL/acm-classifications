@@ -1,111 +1,428 @@
+/* 
+ * Use the ensps color palette 
+ * (https://github.com/AliaumeL/ensps-colorscheme)
+ */
+:root {
+    --ensps-prune: #63003c;
+    --ensps-A1:    #000000;
+    --ensps-B1:    #313e48;
+    --ensps-C1:    #7c878f;
+    --ensps-D1:    #d5dadf;
+    --ensps-A2:    #c60b46;
+    --ensps-B2:    #ed145b;
+    --ensps-C2:    #ee3423;
+    --ensps-D2:    #f37720;
+    --ensps-A3:    #7c2a90;
+    --ensps-B3:    #7d6aae;
+    --ensps-C3:    #c6671d;
+    --ensps-D3:    #febc18;
+    --ensps-A4:    #004e7d;
+    --ensps-B4:    #0e87c9;
+    --ensps-C4:    #0094b5;
+    --ensps-D4:    #46c3d2;
+    --ensps-A5:    #00807a;
+    --ensps-B5:    #40b769;
+    --ensps-C5:    #8cc63e;
+    --ensps-D5:    #d5df3d;
+    /* variants: bg (50% white), hint (75% white) */
+    --ensps-prune-bg: color-mix(in srgb, var(--ensps-prune) 50%, white);
+    --ensps-A1-bg:    color-mix(in srgb, var(--ensps-A1) 50%, white);
+    --ensps-B1-bg:    color-mix(in srgb, var(--ensps-B1) 50%, white);
+    --ensps-C1-bg:    color-mix(in srgb, var(--ensps-C1) 50%, white);
+    --ensps-D1-bg:    color-mix(in srgb, var(--ensps-D1) 50%, white);
+    --ensps-A2-bg:    color-mix(in srgb, var(--ensps-A2) 50%, white);
+    --ensps-B2-bg:    color-mix(in srgb, var(--ensps-B2) 50%, white);
+    --ensps-C2-bg:    color-mix(in srgb, var(--ensps-C2) 50%, white);
+    --ensps-D2-bg:    color-mix(in srgb, var(--ensps-D2) 50%, white);
+    --ensps-A3-bg:    color-mix(in srgb, var(--ensps-A3) 50%, white);
+    --ensps-B3-bg:    color-mix(in srgb, var(--ensps-B3) 50%, white);
+    --ensps-C3-bg:    color-mix(in srgb, var(--ensps-C3) 50%, white);
+    --ensps-D3-bg:    color-mix(in srgb, var(--ensps-D3) 50%, white);
+    --ensps-A4-bg:    color-mix(in srgb, var(--ensps-A4) 50%, white);
+    --ensps-B4-bg:    color-mix(in srgb, var(--ensps-B4) 50%, white);
+    --ensps-C4-bg:    color-mix(in srgb, var(--ensps-C4) 50%, white);
+    --ensps-D4-bg:    color-mix(in srgb, var(--ensps-D4) 50%, white);
+    --ensps-A5-bg:    color-mix(in srgb, var(--ensps-A5) 50%, white);
+    --ensps-B5-bg:    color-mix(in srgb, var(--ensps-B5) 50%, white);
+    --ensps-C5-bg:    color-mix(in srgb, var(--ensps-C5) 50%, white);
+    --ensps-D5-bg:    color-mix(in srgb, var(--ensps-D5) 50%, white);
+    /* hint colors */
+    --ensps-prune-hint: color-mix(in srgb, var(--ensps-prune) 75%, white);
+    --ensps-A1-hint:    color-mix(in srgb, var(--ensps-A1) 75%, white);
+    --ensps-B1-hint:    color-mix(in srgb, var(--ensps-B1) 75%, white);
+    --ensps-C1-hint:    color-mix(in srgb, var(--ensps-C1) 75%, white);
+    --ensps-D1-hint:    color-mix(in srgb, var(--ensps-D1) 75%, white);
+    --ensps-A2-hint:    color-mix(in srgb, var(--ensps-A2) 75%, white);
+    --ensps-B2-hint:    color-mix(in srgb, var(--ensps-B2) 75%, white);
+    --ensps-C2-hint:    color-mix(in srgb, var(--ensps-C2) 75%, white);
+    --ensps-D2-hint:    color-mix(in srgb, var(--ensps-D2) 75%, white);
+    --ensps-A3-hint:    color-mix(in srgb, var(--ensps-A3) 75%, white);
+    --ensps-B3-hint:    color-mix(in srgb, var(--ensps-B3) 75%, white);
+    --ensps-C3-hint:    color-mix(in srgb, var(--ensps-C3) 75%, white);
+    --ensps-D3-hint:    color-mix(in srgb, var(--ensps-D3) 75%, white);
+    --ensps-A4-hint:    color-mix(in srgb, var(--ensps-A4) 75%, white);
+    --ensps-B4-hint:    color-mix(in srgb, var(--ensps-B4) 75%, white);
+    --ensps-C4-hint:    color-mix(in srgb, var(--ensps-C4) 75%, white);
+    --ensps-D4-hint:    color-mix(in srgb, var(--ensps-D4) 75%, white);
+    --ensps-A5-hint:    color-mix(in srgb, var(--ensps-A5) 75%, white);
+    --ensps-B5-hint:    color-mix(in srgb, var(--ensps-B5) 75%, white);
+    --ensps-C5-hint:    color-mix(in srgb, var(--ensps-C5) 75%, white);
+    --ensps-D5-hint:    color-mix(in srgb, var(--ensps-D5) 75%, white);
+}
+
+/* Font settings */
 body {
   font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+}
 
+/* if light mode */
+@media (prefers-color-scheme: light) {
+    :root {
+        --selectable-item: var(--ensps-B4-bg);
+        --hovered-item-bg: var(--ensps-D3-hint);
+        --hovered-item-border: var(--ensps-D3);
+    }
+
+    body {
+        background-color: white;
+        color: var(--ensps-A1);
+    }
+    a {
+        color: var(--ensps-C2);
+    }
+    a:hover {
+        color: var(--ensps-D2);
+    }
+    .hint {
+        color: var(--ensps-prune-hint);
+    }
 }
-h1 {
-  color: #333;
+/* if dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selectable-item: var(--ensps-B4-bg);
+        --hovered-item-bg: var(--ensps-D3-hint);
+        --hovered-item-border: var(--ensps-D3);
+    }
+    body {
+        background-color: color-mix(in srgb, var(--ensps-A1) 90%, white);
+        color: var(--ensps-D1);
+    }
+    a {
+        color: var(--ensps-C2);
+    }
+    a:hover {
+        color: var(--ensps-D2);
+    }
+    .hint {
+        color: var(--ensps-prune-hint);
+    }
 }
-ul {
-  list-style-type: none;
+
+/* General grid layout */
+body {
+    display: grid;
+    max-width: 1200px;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+header {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--ensps-C1);
+}
+
+main {
+  display: grid;
+  grid-template-areas: 
+  "search  search"
+  "results export";
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-areas: 
+    "search"
+    "results"
+    "export";
+    grid-template-columns: 1fr;
+  }
+}
+
+section#search-box {
+  grid-area: search;
+}
+
+section#result-box {
+  grid-area: results;
+}
+
+section#selection-box {
+  grid-area: export;
+}
+
+/* Styling titles 
+ *
+ * add a D3 underline to h2's
+ * */
+section h2 {
+  width: fit-content;
+  /* rounded corners */
+  border-radius: 5px;
+  padding: 5px 10px;
+  /* adapt line height to center text */
+  line-height: 1.5;
+  background: linear-gradient(to top, var(--ensps-D4) 100%);
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease-in-out;
+}
+section h2:hover {
+  background-size: 100% 100%;
+}
+
+
+/* Styling search results
+ * <ul id="results">
+ * <li class="result-item">
+ * <span class="desc">...</span>
+ * <ol class="parents">
+ * <li> parent name </li>
+ * ...
+ * </ol>
+ * </li>
+ * ...
+ * </ul>
+ */
+ul#results {
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-li {
-  margin: 5px 0;
-  cursor: pointer;
-}
-li:hover {
-  background-color: #f0f0f0;
-}
-.result-item {
-  margin-bottom: 10px;
+
+/* on hover, the background color of the item changes
+ * and in "elevates" a bit.
+ * on click, the backround color darkens and 
+ * the button is "pressed down" a bit.
+ */
+ul#results li.result-item {
+  border: 1px solid var(--selectable-item);
   border-radius: 5px;
   padding: 10px;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+ul#results li.result-item:hover {
+  border: 1px solid var(--hovered-item-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 4px solid var(--hovered-item-border);
+  magin-top: -4px;
+}
+ul#results li.result-item:active {
+  background-color: var(--hovered-item-bg);
+  border: 4px solid var(--hovered-item-border);
+
+}
+ul#results li.result-item .desc {
+  font-weight: bold;
+  font-variant: small-caps;
 }
 
-.result-item .desc {
-  font-weight: bold;
-}
-.result-item .parents {
-  margin-left: 20px;
-  font-style: italic;
-}
-.parents li {
-  margin: 2px 0;
-}
-/* parents list : [name] < [name] < [name] 
-   with flex and truncaded text if too large */
-ol.parents {
+/* ul > ol 
+ * write the parents of the result item 
+ * as little tags separated by ">" symbols 
+ */
+ul#results li.result-item ol.parents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
-ol.parents li::before {
-  content: "< ";
-}
-ol.parents li {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-label {
-  font-weight: bold;
-}
-
-#search-box, #selection-box, #result-box {
-  border: 1px solid #ccc;
+ul#results li.result-item ol.parents li {
+  color: var(--ensps-B1);
   padding: 5px;
-  margin-bottom: 20px;
   border-radius: 5px;
-
+  font-size: 0.9em;
 }
-
-select {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-}
-
-ul#selection span.origin {
-  border-radius: 3px;
-  background-color: #e0e0e0;
-  padding: 2px 4px;
+ul#results li.result-item ol.parents li::before {
+  content: ">";
   margin-right: 5px;
 }
 
-#export-button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Styling the search box
+ *
+  <section id="search-box">
+        <h2 class="sec-title">Search</h2>
+        <input type="text" id="search" />
+        <select id="classification-select">
+          <option value="acm_12">ACM 2012</option>
+          <option value="acm_98">ACM 1998</option>
+          <option value="msc_10">MSC 2010</option>
+        </select>
+      </section>
+  */
+section#search-box {
+  display: grid;
+  grid-template-areas: 
+    "title title"
+    "search select";
+  gap: 5px;
+  grid-template-columns: 1fr 150px;
+}
+section#search-box h2.sec-title {
+  grid-area: title;
+}
+section#search-box input#search {
+  grid-area: search;
+  padding: 10px;
+  border: 1px solid var(--ensps-B4);
+  background-color: var(--ensps-D1-hint);
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+section#search-box select#classification-select {
+  grid-area: select;
   width: 100%;
+  padding: 10px;
+  border: 1px solid var(--ensps-B4);
+  background-color: var(--ensps-D4-hint);
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+section#search-box input#search:focus,
+section#search-box select#classification-select:focus {
+  outline: none;
+  border-color: var(--ensps-D3);
+  box-shadow: 0 0 5px var(--ensps-D3);
+  background-color: var(--ensps-D3-hint);
 }
 
-#export-button.copied {
-  background-color: #28a745;
+
+/* styling the export section 
+ * <section id="selection-box">
+ * <h2 class="sec-title">Export</h2>
+ * <select id="export-mode">
+ * <button id="export-button">Export</button>
+ * <ul id="selection">
+ * <li> <span class="origin"> [dataset] </span> 
+ *      <span class="code"> [code] </span>
+ *  </li>
+ *  ...
+ *  </ul>
+ *  </section>
+ */
+section#selection-box {
+}
+section#selection-box h2.sec-title {
+}
+section#selection-box select#export-mode {
+  padding: 10px;
+  border: 1px solid var(--ensps-B4);
+  background-color: var(--ensps-D4-hint);
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+section#selection-box select#export-mode:focus {
+  border-color: var(--ensps-D3);
+  box-shadow: 0 0 5px var(--ensps-D3);
+  background-color: var(--ensps-D3-hint);
+}
+section#selection-box button#export-button {
+  padding: 10px 20px;
+  background-color: var(--ensps-D4-hint);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-#export-button:hover {
-  background-color: #0056b3;
+section#selection-box button#export-button:hover {
+  background-color: var(--ensps-D3-hint);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+section#selection-box button#export-button:active {
+  background-color: var(--ensps-D2-hint);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+section#selection-box button#export-button.copied {
+  background-color: var(--ensps-B5-hint);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#export-button.copied:hover {
-  background-color: #218838;
+ul#selection {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  overflow-y: srcoll;
 }
 
+/* on hover, the background color of the item changes
+ * and in "elevates" a bit.
+ * on click, the backround color darkens and 
+ * the button is "pressed down" a bit.
+ */
+ul#selection li.selected-item {
+  border: 1px solid var(--selectable-item);
+  border-radius: 5px;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+ul#selection li.selected-item:hover {
+  border: 1px solid var(--ensps-A2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 4px solid var(--ensps-A2);
+  magin-top: -4px;
+}
+ul#selection li.selected-item:active {
+  background-color: var(--ensps-B2-hint);
+  border: 4px solid var(--ensps-A2);
+}
+
+ul#selection li.selected-item .desc {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+/* ul > ol 
+ * write the parents of the result item 
+ * as little tags separated by ">" symbols 
+ */
+ul#selection li.selected-item ol.parents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+ul#selection li.selected-item ol.parents li {
+  color: var(--ensps-B1);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+ul#selection li.selected-item ol.parents li::before {
+  content: ">";
+  margin-right: 5px;
+}
