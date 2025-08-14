@@ -297,9 +297,7 @@ class ClassificationTree:
         while len(stack) > 0:
             (children, flat_node) = stack.pop()
 
-            if children == []:
-                result.append(flat_node)
-                continue
+            result.append(flat_node)
 
             for child in children:
                 stack.append(

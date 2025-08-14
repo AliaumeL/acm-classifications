@@ -62,6 +62,7 @@ pub fn search(fz: &mut FuzzySeach, query: &str) -> Vec<JsValue> {
     }
 
     top_10_matches.sort_by_key(|(_, score)| *score);
+    top_10_matches.reverse();
 
     let matches: Vec<JsValue> = top_10_matches
         .iter()
